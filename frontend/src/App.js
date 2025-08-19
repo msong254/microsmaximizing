@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FoodSearch from './FoodSearch.jsx';
+import FoodSearch from './components/FoodSearch.jsx';
 import config from './config';
 
 function App() {

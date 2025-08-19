@@ -1,5 +1,5 @@
 import { useState } from "react";
-import config from './config';
+import config from '../config'; // ✅ If config.js is inside components folder
 
 function FoodSearch({ onFoodSelect }) {
   const [query, setQuery] = useState("");
@@ -8,7 +8,7 @@ function FoodSearch({ onFoodSelect }) {
   const handleSearch = async () => {
     if (!query.trim()) return;
     try {
-      const res = await fetch(`${config.BASE_URL}/foods/search?query=${query}`);
+      const res = await fetch(`${config.BASE_URL}/foods/search?query=${encodeURIComponent(query)}`);
       const data = await res.json();
       setResults(data);
     } catch (err) {
