@@ -48,4 +48,5 @@ frontend/.env.local
 .idea/
 
 # BFG cleaner logs
-.bfg-report/
+.bfg-report/usda_data/*.csv
+server/db/app.db
