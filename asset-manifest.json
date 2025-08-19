@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/microsmaximizing/static/css/main.10326e4f.css",
+    "main.js": "/microsmaximizing/static/js/main.9220fdbc.js",
+    "static/js/453.670e15c7.chunk.js": "/microsmaximizing/static/js/453.670e15c7.chunk.js",
+    "index.html": "/microsmaximizing/index.html",
+    "main.10326e4f.css.map": "/microsmaximizing/static/css/main.10326e4f.css.map",
+    "main.9220fdbc.js.map": "/microsmaximizing/static/js/main.9220fdbc.js.map",
+    "453.670e15c7.chunk.js.map": "/microsmaximizing/static/js/453.670e15c7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.10326e4f.css",
+    "static/js/main.9220fdbc.js"
+  ]
+}
