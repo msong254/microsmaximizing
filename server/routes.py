@@ -17,18 +17,23 @@ class LogRequest(BaseModel):
 
 @router.get("/foods/search")
 def search_foods(query: str, db: Session = Depends(get_db)):
-    results = (
-        db.query(Food)
-        .filter(Food.name.ilike(f"%{query}%"))
-        .order_by(
-            (Food.name.ilike(query)).desc(),
-            (Food.name.ilike(f"{query}%")).desc(),
-            Food.name
+    print(f"🔍 Searching for: {query}")
+    try:
+        results = (
+            db.query(Food)
+            .filter(Food.name.ilike(f"%{query}%"))
+            .order_by(
+                (Food.name.ilike(query)).desc(),
+                (Food.name.ilike(f"{query}%")).desc(),
+                Food.name
+            )
+            .limit(20)
+            .all()
         )
-        .limit(20)
-        .all()
-    )
-    return [{"id": food.id, "name": food.name} for food in results]
+        return [{"id": food.id, "name": food.name} for food in results]
+    except Exception as e:
+        print(f"❌ Error during food search: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @router.post("/log")
 def log_food(entry: LogRequest, db: Session = Depends(get_db)):
