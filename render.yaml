@@ -1,9 +1,9 @@
-services:
+gunicorn server.main:appservices:
   - type: web
     name: microsmaximizing-backend
     runtime: python
     buildCommand: ""
-    startCommand: uvicorn server.main:app --host 0.0.0.0 --port 8000
+    startCommand: gunicorn server.main:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.11
