@@ -1,4 +1,5 @@
 import { useState } from "react";
+import config from './config';
 
 export default function FoodLogger() {
   const [query, setQuery] = useState("");
@@ -6,7 +7,7 @@ export default function FoodLogger() {
 
   const searchFoods = async () => {
     if (!query.trim()) return;
-    const res = await fetch(`/api/foods/search?query=${encodeURIComponent(query)}`);
+    const res = await fetch(`${config.BASE_URL}/foods/search?query=${encodeURIComponent(query)}`);
     const data = await res.json();
 
     const resultsWithGrams = data.map((item) => ({
@@ -29,9 +30,7 @@ export default function FoodLogger() {
       amount: grams
     };
 
-    console.log("🚀 Sending log entry:", logEntry);
-
-    const res = await fetch("/api/log", {
+    const res = await fetch(`${config.BASE_URL}/log`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(logEntry),
@@ -43,7 +42,6 @@ export default function FoodLogger() {
       setResults([]);
     } else {
       const errorText = await res.text();
-      console.error("❌ Log failed:", errorText);
       alert(`❌ Failed to log food: ${res.status} ${errorText}`);
     }
   };

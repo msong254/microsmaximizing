@@ -1,4 +1,3 @@
-// NutrientSummary.jsx
 import React from 'react';
 
 export default function NutrientSummary({ nutrients }) {
@@ -13,7 +12,7 @@ export default function NutrientSummary({ nutrients }) {
       <ul>
         {nutrients.map((nutrient, index) => (
           <li key={index}>
-            {nutrient.name}: {nutrient.amount} {nutrient.unit}
+            {nutrient.name}: {nutrient.total} {nutrient.unit}
           </li>
         ))}
       </ul>

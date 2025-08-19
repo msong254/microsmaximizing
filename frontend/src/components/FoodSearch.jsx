@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import config from './config';
 
 function FoodSearch({ onLog }) {
   const [query, setQuery] = useState('');
@@ -9,7 +10,7 @@ function FoodSearch({ onLog }) {
   const handleSearch = async () => {
     if (!query.trim()) return;
     try {
-      const response = await fetch(`/api/foods/search?query=${query}`);
+      const response = await fetch(`${config.BASE_URL}/foods/search?query=${encodeURIComponent(query)}`);
       const data = await response.json();
       setResults(data);
     } catch (error) {
@@ -20,7 +21,7 @@ function FoodSearch({ onLog }) {
   const handleLog = async () => {
     if (!selectedFood || !amount) return;
     try {
-      await fetch('/api/log', {
+      await fetch(`${config.BASE_URL}/log`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -32,7 +33,7 @@ function FoodSearch({ onLog }) {
       setResults([]);
       setSelectedFood(null);
       setAmount('');
-      if (onLog) onLog(); // refresh summary in App.js
+      if (onLog) onLog();
     } catch (error) {
       console.error('Log error:', error);
     }
@@ -55,7 +56,10 @@ function FoodSearch({ onLog }) {
             <li
               key={food.id}
               onClick={() => setSelectedFood(food)}
-              style={{ cursor: 'pointer', fontWeight: selectedFood?.id === food.id ? 'bold' : 'normal' }}
+              style={{
+                cursor: 'pointer',
+                fontWeight: selectedFood?.id === food.id ? 'bold' : 'normal'
+              }}
             >
               {food.name}
             </li>
