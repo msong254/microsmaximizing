@@ -1,21 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.routes import router  # ✅ THIS imports your routes
+from api.routes import router  # correct import near top
 
 app = FastAPI()
 
-# ✅ Allow frontend to talk to backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # You can restrict to your frontend domain
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# ✅ Include the real routes under the /api path
 app.include_router(router, prefix="/api")
 
 @app.get("/")
 def root():
-    return {"message": "Hello from Render — backend is connected!"}
+    return {"message": "Backend is live now!"}
