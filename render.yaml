@@ -1,10 +1,7 @@
-gunicorn server.main:appservices:
+services:
   - type: web
-    name: microsmaximizing-backend
+    name: microsmaximizing
     runtime: python
-    buildCommand: ""
+    buildCommand: pip install -r server/requirements.txt
     startCommand: gunicorn server.main:app
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11
-    plan: free
+    workingDirectory: .
