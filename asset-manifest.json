@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/microsmaximizing/static/css/main.eb505b8d.css",
-    "main.js": "/microsmaximizing/static/js/main.cdae699b.js",
+    "main.js": "/microsmaximizing/static/js/main.19382606.js",
     "static/js/584.8fbc48f1.chunk.js": "/microsmaximizing/static/js/584.8fbc48f1.chunk.js",
     "index.html": "/microsmaximizing/index.html",
     "main.eb505b8d.css.map": "/microsmaximizing/static/css/main.eb505b8d.css.map",
-    "main.cdae699b.js.map": "/microsmaximizing/static/js/main.cdae699b.js.map",
+    "main.19382606.js.map": "/microsmaximizing/static/js/main.19382606.js.map",
     "584.8fbc48f1.chunk.js.map": "/microsmaximizing/static/js/584.8fbc48f1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eb505b8d.css",
-    "static/js/main.cdae699b.js"
+    "static/js/main.19382606.js"
   ]
 }
