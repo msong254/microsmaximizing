@@ -1,84 +1,36 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import config from './config';
 
-function FoodSearch({ onLog }) {
-  const [query, setQuery] = useState('');
+function FoodSearch({ onFoodSelect }) {
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [selectedFood, setSelectedFood] = useState(null);
-  const [amount, setAmount] = useState('');
 
   const handleSearch = async () => {
     if (!query.trim()) return;
     try {
-      const response = await fetch(`${config.BASE_URL}/foods/search?query=${encodeURIComponent(query)}`);
-      const data = await response.json();
+      const res = await fetch(`${config.BASE_URL}/foods/search?query=${query}`);
+      const data = await res.json();
       setResults(data);
-    } catch (error) {
-      console.error('Search error:', error);
-    }
-  };
-
-  const handleLog = async () => {
-    if (!selectedFood || !amount) return;
-    try {
-      await fetch(`${config.BASE_URL}/log`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          food_id: selectedFood.id,
-          amount: parseFloat(amount)
-        })
-      });
-      setQuery('');
-      setResults([]);
-      setSelectedFood(null);
-      setAmount('');
-      if (onLog) onLog();
-    } catch (error) {
-      console.error('Log error:', error);
+    } catch (err) {
+      console.error("Search error:", err);
     }
   };
 
   return (
     <div>
-      <h2>Search for Food</h2>
       <input
-        type="text"
-        placeholder="Enter food name"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search food"
       />
       <button onClick={handleSearch}>Search</button>
-
-      {results.length > 0 && (
-        <ul>
-          {results.map((food) => (
-            <li
-              key={food.id}
-              onClick={() => setSelectedFood(food)}
-              style={{
-                cursor: 'pointer',
-                fontWeight: selectedFood?.id === food.id ? 'bold' : 'normal'
-              }}
-            >
-              {food.name}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {selectedFood && (
-        <div>
-          <h3>Selected: {selectedFood.name}</h3>
-          <input
-            type="number"
-            placeholder="Amount in grams"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          <button onClick={handleLog}>Log</button>
-        </div>
-      )}
+      <ul>
+        {results.map((food) => (
+          <li key={food.id} onClick={() => onFoodSelect(food)}>
+            {food.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

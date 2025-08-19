@@ -24,3 +24,14 @@ yarn-error.log*
 
 # Ignore virtual environments
 venv/
+
+# Ignore virtual environments
+server/venv/
+
+# Ignore USDA raw data files
+usda_data/
+
+# Ignore database file
+server/db/app.db
+
+
