@@ -3,11 +3,11 @@ from sqlalchemy.orm import Session
 from datetime import date
 from pydantic import BaseModel
 
-from server.database.db import get_db
-from server.database.models.food import Food
-from server.database.models.nutrient import Nutrient
-from server.database.models.food_nutrient import FoodNutrient
-from server.database.models.log import FoodLog
+from database.db import get_db
+from database.models.food import Food
+from database.models.nutrient import Nutrient
+from database.models.food_nutrient import FoodNutrient
+from database.models.log import FoodLog
 
 router = APIRouter()
 
